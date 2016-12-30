@@ -1,0 +1,18 @@
+---
+ - name: Configure php-expose off
+   hosts: php-dev
+   serial: 1
+   become: yes
+   become_user: root
+   become_method: dzdo
+   vars:
+       file_dir: /local/content/php/conf.d/
+   tasks:
+     - name: copy php-expose
+       template: src=templates/php-expose-off.ini dest={{ file_dir }}
+          mode=0644
+       notify: restart apache
+
+   handlers:
+     - name: restart apache
+       service: name=apache state=restarted

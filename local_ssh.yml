@@ -1,0 +1,7 @@
+- name: SSH config assembler
+  hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+
+  - assemble: src=/Users/donkorvn/.ssh/conf.d dest=/Users/donkorvn/.ssh/config

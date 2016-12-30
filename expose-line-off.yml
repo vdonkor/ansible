@@ -1,0 +1,20 @@
+---
+- name: Configure php-expose off
+  hosts: nci-test
+  serial: 1
+  become: yes
+  become_user: root
+  become_method: dzdo
+  vars:
+    file_dir: /local/content/php/conf.d/
+  tasks:
+    - name: Change the expose_php from on to off
+      lineinfile:
+        dest: /local/content/php/etc/php.ini
+        regexp: '^expose_php ='
+        line: 'expose_php = off'
+      notify: restart apache
+
+  handlers:
+    - name: restart apache
+      service: name=apache state=restarted

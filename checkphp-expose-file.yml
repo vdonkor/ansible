@@ -1,0 +1,8 @@
+
+- name: Check if my php-expose file exists
+  hosts: php-dev
+
+  tasks:
+    - name: Check php-expose
+      stat: path=/local/content/php/conf.d/php-expose-off.ini
+      register: stat_result
