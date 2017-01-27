@@ -1,0 +1,15 @@
+---
+ - name: Restart Apache Service
+   hosts: restart
+   serial: 1
+   become: yes
+   become_user: root
+   become_method: dzdo
+   vars:
+       file_dir: /local/content/php/conf.d/
+   tasks:
+     - name: stop apache service
+       service: name=apache state=stopped
+
+     - name: start apache service
+       service: name=apache state=started

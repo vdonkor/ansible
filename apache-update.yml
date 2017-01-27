@@ -1,0 +1,22 @@
+---
+- name: Register output of a command
+  hosts: yum-test
+  become: yes
+  become_user: root
+  become_method: dzdo
+  tasks:
+    
+    - name: Backup apache 
+      command:  tar czvf /usr/local/apache-2-4-old.tgz /usr/local/apache2.4
+
+    - name: Yum update cbitt-apache package
+      yum: name=cbiit-apache2.4 state=latest
+
+    - name: Stop apache service
+      service: name=apache state=stopped
+
+    - name: Start apache service
+      service: name=apache state=started
+
+
+      

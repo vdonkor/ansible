@@ -1,0 +1,12 @@
+---
+ - name: Configure php-expose off
+   hosts: php-expose
+   serial: 1
+   become: yes
+   become_user: root
+   become_method: dzdo
+   vars:
+       file_dir: /local/content/php/conf.d/
+   tasks:
+     - name: start apache service
+       service: name=apache state=started

@@ -1,0 +1,11 @@
+---
+- name: Register output of a command
+  hosts: php-expose
+  tasks:
+    - name: Check expose config 
+      shell: php -i | grep expose_php | awk 'FNR==1'
+      register: expose
+
+    - debug: msg="{{ expose.stdout }}"
+
+      

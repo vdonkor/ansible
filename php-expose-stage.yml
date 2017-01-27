@@ -1,6 +1,6 @@
 ---
  - name: Configure php-expose off
-   hosts: php-expose
+   hosts: php-stage
    serial: 1
    become: yes
    become_user: root
@@ -11,11 +11,8 @@
      - name: copy php-expose
        template: src=templates/php-expose-off.ini dest={{ file_dir }}
           mode=0644
-    
-       
-     - name: Ensure apache is started
-       service: name=apache state=stopped
+       notify: restart apache
 
-
+   handlers:
      - name: restart apache
-       service: name=apache state=started
+       service: name=apache state=restarted

@@ -1,0 +1,22 @@
+---
+- name: Register output of a command
+  hosts: php-dev
+  become: yes
+  become_user: root
+  become_method: dzdo
+  tasks:
+    
+    - name: Backup libphp5 module 
+      command:  cp  /usr/local/apache/modules/libphp5.so /usr/local/libphp5.so.01-26-2017
+
+    - name: Yum update cbiit-php5.6 package
+      yum: name=cbiit-php5.6 state=latest
+
+    - name: Stop apache service
+      service: name=apache state=stopped
+
+    - name: Start apache service
+      service: name=apache state=started
+
+
+      

@@ -1,0 +1,12 @@
+---
+- name: Register output of a command
+  hosts: php-dev
+
+  tasks:
+    - name: Check expose config 
+      shell: rpm -q cbiit-php5.6
+      register: version
+
+    - debug: msg="{{ version.stdout }}"
+
+      
