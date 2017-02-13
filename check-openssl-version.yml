@@ -1,0 +1,11 @@
+---
+- name: Register output of a command
+  hosts: open-stage
+  tasks:
+    - name: check openssl version 
+      shell: rpm -q cbiit-openssl1.0.2
+      register: cbiitopenssl
+
+    - debug: msg="{{ cbiitopenssl.stdout }}"
+
+      

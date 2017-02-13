@@ -1,0 +1,12 @@
+---
+ - name: Restart Apache Service
+   hosts: nci-test
+   become: yes
+   become_user: root
+   become_method: dzdo
+
+   tasks:
+     - name: reboot the system
+       command: reboot
+
+     

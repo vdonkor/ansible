@@ -1,16 +1,16 @@
 ---
  - name: Restart Apache Service
-   hosts: restart
+   hosts: yum-dev
    become: yes
    become_user: root
    become_method: dzdo
 
    tasks:
      - name: stop apache service
-       service: name=apache state=stopped
+       shell: /etc/init.d/apache stop
 
-     - name: wait till the apache is completely stopped
-       wait_for: service name=apache state=stopped   
+     - name: ensure apache service is stopped
+       service: name=apache state=stopped
 
      - name: start apache service
        service: name=apache state=started

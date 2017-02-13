@@ -1,0 +1,14 @@
+---
+ - name: Restart Apache Service
+   hosts: open-stage
+   become: yes
+   become_user: root
+   become_method: dzdo
+
+   tasks:
+     - name: update openssl
+       yum: name=cbiit-openssl1.0.2 state=latest
+
+   
+
+     

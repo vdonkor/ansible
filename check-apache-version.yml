@@ -1,6 +1,6 @@
 ---
 - name: Register output of a command
-  hosts: yum-update
+  hosts: yum-dev
   tasks:
     - name: Check expose config 
       shell: rpm -q cbiit-apache2.4
